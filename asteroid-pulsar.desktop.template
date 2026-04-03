@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Pulsar
+Categories=Applications;
+Exec=asteroid-pulsar
+Icon=ios-flash-outline
+X-Asteroid-Center-Color=#1A0033
+X-Asteroid-Outer-Color=#000000
