@@ -27,6 +27,7 @@ install(PROGRAMS ${CMAKE_BINARY_DIR}/asteroid-pulsar
 build_translations(i18n)
 add_subdirectory(src)
 
-generate_desktop(${CMAKE_SOURCE_DIR} asteroid-pulsar)
+install(FILES asteroid-pulsar.desktop
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

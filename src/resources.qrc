@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>AppShell.qml</file>
         <file>StrobePage.qml</file>
     </qresource>
 </RCC>
