@@ -11,10 +11,9 @@ Application {
     
     property bool strobeOn:       false
     property int  startBrightness: -1
+    DisplayBlanking { preventBlanking: strobeOn }
     
-    onStrobeOnChanged: DisplayBlanking.preventBlanking = strobeOn
     
-    Component.onCompleted: DisplayBlanking.preventBlanking = strobeOn
     Component.onDestruction: {
         if (startBrightness !== -1)
             displaySettings.brightness = startBrightness
