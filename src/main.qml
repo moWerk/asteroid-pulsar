@@ -1,7 +1,7 @@
-import QtQuick 2.9
-import org.asteroid.controls 1.0
-import org.nemomobile.systemsettings 1.0
-import Nemo.KeepAlive 1.1
+import QtQuick
+import org.asteroid.controls
+import org.asteroid.settings
+import Nemo.KeepAlive
 
 Application {
     id: app
