@@ -15,9 +15,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick
-import org.asteroid.controls
-import org.asteroid.utils
+import QtQuick 2.6
+import "."
 
 Item {
     id: root
@@ -100,7 +99,7 @@ Item {
 
     Connections {
         target: app
-        function onStrobeOnChanged() {
+        onStrobeOnChanged: {
             if (!app.strobeOn) {
                 strobeTimer.flashPhase = false
                 strobeRect.color = "#000000"

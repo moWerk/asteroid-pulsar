@@ -1,0 +1,4 @@
+Stand-ins for the parts of AsteroidOS's qml-asteroid (org.asteroid.controls,
+org.asteroid.utils) that the ported apps use, written for SailfishOS's Qt 5.6.
+Copied into each app's qml/game/. Icons in icons/ are ionicons (MIT, see
+icons/LICENSE) from AsteroidOS/asteroid-icons-ion.

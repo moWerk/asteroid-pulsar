@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<!-- Launcher icon for SailfishOS: square background as on the Terminal icon
+     (Sailfish Apps icon template, CC BY 3.0) in Pulsar's purple, and the
+     ionicons flash (MIT) that the watch app uses. -->
+<defs><radialGradient id="bg" cx="256" cy="256" r="256" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a1a7a"/><stop offset="1" stop-color="#0d0018"/></radialGradient></defs>
+<rect x="1.8" y="1.8" width="508.4" height="508.4" rx="8.5" ry="8.5" fill="url(#bg)"/>
+<circle cx="256" cy="256" r="150" fill="#66444444"/>
+<g transform="translate(256 256) scale(0.95) translate(-256 -256)"><path d="m273.9 132-16.5 89.1L254 240h84l-99.8 140 16.5-89.1L258 272h-83.9l99.8-140m28.8-68L143 288h95.8l-29.5 160L369 224h-95.8l29.5-160z" fill="#ffffff"/></g>
+</svg>

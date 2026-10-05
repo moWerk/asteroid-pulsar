@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=harbour-asteroid-pulsar
+Exec=harbour-asteroid-pulsar
+Name=Pulsar
+Comment=A stroboscope
+
+[X-Sailjail]
+# Sandboxed. The app sets the display brightness through the display settings while strobing.
+OrganizationName=net.mowerk
+ApplicationName=harbour-asteroid-pulsar
+Permissions=
