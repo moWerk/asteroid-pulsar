@@ -23,7 +23,7 @@ strobe fills the whole screen when it runs.
 - The brightness is raised to maximum while the app runs and set back
   when it closes normally, as on the watch. If the app is killed, the
   brightness stays at maximum.
-- Install: `devel-su pkcon install-local harbour-asteroid-pulsar-1.0.0-1.aarch64.rpm`
+- Install: `devel-su pkcon install-local harbour-asteroid-pulsar-1.0.1-1.aarch64.rpm`
   (aarch64 only).
 - Build: `mb2 -t SailfishOS-5.1.0.11-aarch64 build` with the Sailfish
   Platform SDK. SailfishOS is on Qt 5.6; the port uses small stand-ins
