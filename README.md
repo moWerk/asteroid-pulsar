@@ -15,6 +15,8 @@ Drag adjustable Hz on the strobe action screen
 
 ## SailfishOS
 
+Reviewing the code? Start with [review-and-architecture-hints.md](review-and-architecture-hints.md).
+
 The `sailfishos` branch is the SailfishOS version, built for Sailfish OS
 5.1 on aarch64 and run on a Jolla C2. The strobe is the watch app; the
 controls keep the watch proportions across the phone's width, and the
