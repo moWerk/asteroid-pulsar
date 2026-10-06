@@ -23,8 +23,7 @@ strobe fills the whole screen when it runs.
 - The brightness is raised to maximum while the app runs and set back
   when it closes normally, as on the watch. If the app is killed, the
   brightness stays at maximum.
-- Install: `devel-su pkcon install-local harbour-asteroid-pulsar-1.0.1-1.aarch64.rpm`
-  (aarch64 only).
+- Install: `devel-su pkcon install-local harbour-asteroid-pulsar-1.1.0-1.noarch.rpm`
 - Build: `mb2 -t SailfishOS-5.1.0.11-aarch64 build` with the Sailfish
   Platform SDK. SailfishOS is on Qt 5.6; the port uses small stand-ins
   for the AsteroidOS controls and SailfishOS's own display settings.
@@ -34,4 +33,25 @@ strobe fills the whole screen when it runs.
 ```
 Disclosure: LLMGD-2 · origin O0 (LLM-ported overnight; checked through window grabs on one Jolla C2; strobe mode not seen; not used or read by a human; self-graded)
 LLMGD: v0.2; assurance=A2; flags=T; origin={O0:.9,O1:.1}; origin_headline=O0; scope=port(code+assets+packaging+docs); graded-by=claude-opus-5-5; retrieval=author-side
+```
+
+### Pure QML, one package for every phone (1.1.0)
+
+App developer poetaster pointed out in the forum that these ports need no
+compiled code. Since 1.1.0 the app is QML only: the system's `sailfish-qml`
+launcher runs it, and one `noarch` package serves aarch64, 32 bit ARM and
+x86, SailfishOS 3.4 to 5.1. Install with
+`devel-su pkcon install-local harbour-asteroid-pulsar-1.1.0-1.noarch.rpm`;
+pkcon brings in the launcher (libsailfishapp-launcher) if it is missing.
+The package is compressed with xz, because rpm on SailfishOS 3.4 cannot
+unpack the zstd that newer SDKs use by default.
+
+The C++ start code only set the app name and held a screenshot test hook; both went.
+
+Checked: installed and started without QML warnings on a Jolla C2 (5.1),
+the Jolla Tablet (4.6) and a Jolla 1 (3.4).
+
+```
+Disclosure: LLMGD-3 · origin O1 (idea from a forum reply and the author's go; LLM-converted; start-checked by log on three devices; self-graded)
+LLMGD: v0.2; assurance=A3; flags=T; origin={O0:.7,O1:.3}; origin_headline=O0; scope=packaging+code; graded-by=claude-opus-5-5; retrieval=author-side
 ```

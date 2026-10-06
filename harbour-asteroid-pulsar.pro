@@ -1,16 +1,26 @@
+# Pure QML, no binary: sailfish-qml (libsailfishapp-launcher) runs
+# qml/harbour-asteroid-pulsar.qml, so one noarch package serves every architecture.
+TEMPLATE = aux
 TARGET = harbour-asteroid-pulsar
 
-CONFIG += sailfishapp sailfishapp_i18n sailfishapp_i18n_idbased sailfishapp_i18n_unfinished
+CONFIG += sailfishapp_i18n sailfishapp_i18n_idbased sailfishapp_i18n_unfinished
 
-SOURCES += src/main.cpp
+qml.files = qml
+qml.path = /usr/share/$${TARGET}
+desktop.files = $${TARGET}.desktop
+desktop.path = /usr/share/applications
+INSTALLS += qml desktop
 
-DISTFILES += qml/harbour-asteroid-pulsar.qml \
-    qml/game/*.qml \
-    qml/game/qmldir \
-    rpm/harbour-asteroid-pulsar.spec \
-    harbour-asteroid-pulsar.desktop
+for(size, $$list(86x86 108x108 128x128 172x172)) {
+    icon$${size}.files = icons/$${size}/$${TARGET}.png
+    icon$${size}.path = /usr/share/icons/hicolor/$${size}/apps
+    INSTALLS += icon$${size}
+}
 
-SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
+DISTFILES += qml/$${TARGET}.qml \
+    $$files(qml/game/*) \
+    rpm/$${TARGET}.spec \
+    $${TARGET}.desktop
 
 # qsTrId() with //% engineering English: the id based build keeps the
 # unfinished entries, so the default .qm carries that English.

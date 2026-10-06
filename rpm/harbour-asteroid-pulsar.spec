@@ -1,15 +1,19 @@
+# xz, not zstd: rpm on SailfishOS 3.4 can not unpack zstd payloads
+%define _binary_payload w6.xzdio
+
 Name:       harbour-asteroid-pulsar
 Summary:    Pulsar, a stroboscope
-Version:    1.0.1
+Version:    1.1.0
 Release:    1
 License:    GPLv3+
 URL:        https://github.com/moWerk/asteroid-pulsar
 Source0:    %{name}-%{version}.tar.bz2
+BuildArch:  noarch
 Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   libsailfishapp-launcher
 Requires:   qt5-qtgraphicaleffects
 Requires:   libkeepalive
 Requires:   nemo-qml-plugin-systemsettings
-BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
@@ -35,7 +39,6 @@ desktop-file-install --delete-original \
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
