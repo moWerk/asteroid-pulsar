@@ -33,7 +33,7 @@ strobe fills the whole screen when it runs.
   brighter than on a watch.
 
 ```
-Disclosure: LLMGD-2 · origin O0 (LLM-ported overnight; checked through window grabs on one Jolla C2; strobe mode not seen; not used or read by a human; self-graded)
+Disclosure: LLMGD-2 · origin O0 (LLM-ported overnight; checked through window grabs on one Jolla C2; strobe mode not seen; not used or read by the author at the time; self-graded)
 LLMGD: v0.2; assurance=A2; flags=T; origin={O0:.9,O1:.1}; origin_headline=O0; scope=port(code+assets+packaging+docs); graded-by=claude-opus-5-5; retrieval=author-side
 ```
 
