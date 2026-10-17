@@ -17,108 +17,43 @@
 
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import "game" as Game
+import "pages"
 
 ApplicationWindow {
     id: app
 
+    property int  hz: 10
+    property bool strobeOn: false
+
     allowedOrientations: Orientation.Portrait
 
-    // The app lives in the page while it is in front. When it goes to the
-    // background the same scene is moved into the cover, scaled down, so
-    // the home screen tile shows it live.
-    property Item stageItem: null
-    property Item stageHome: null
-    property Item coverHolder: null
+    // A strobe in the background would flash nobody; it stops when the app
+    // leaves the screen.
+    onApplicationActiveChanged: if (!applicationActive) strobeOn = false
 
-    function placeStage() {
-        if (!stageItem) return
-        if (applicationActive || !coverHolder) {
-            if (stageItem.parent !== stageHome) {
-                stageItem.parent = stageHome
-                stageItem.scale = 1
-            }
-        } else {
-            stageItem.parent = coverHolder
-            stageItem.scale = Math.min(coverHolder.width / stageItem.width,
-                                       coverHolder.height / stageItem.height)
-        }
-    }
-
-    onApplicationActiveChanged: placeStage()
-    onCoverHolderChanged: placeStage()
-
-    initialPage: Component {
-        Page {
-            id: page
-
-            // false: the play field fills the screen.
-            // true:  a square field as on a watch, centred.
-            property bool squareStage: false
-
-            allowedOrientations: Orientation.Portrait
-            backNavigation: false
-            showNavigationIndicator: false
-
-            Rectangle {
-                anchors.fill: parent
-                color: "black"
-            }
-
-            Item {
-                id: stage
-                property Item game: gameLoader.item
-                width: page.squareStage ? Math.min(page.width, page.height) : page.width
-                height: page.squareStage ? width : page.height
-                anchors.centerIn: parent
-                clip: true
-
-                Loader {
-                    id: gameLoader
-                    anchors.fill: parent
-                    active: false
-                    source: "game/main.qml"
-                }
-            }
-
-            Component.onCompleted: {
-                app.stageHome = page
-                app.stageItem = stage
-            }
-
-            // The game reads its scale once at start, so the size has to
-            // be known before it is loaded.
-            onStatusChanged: {
-                if (status === PageStatus.Active && !gameLoader.active) {
-                    Game.Dims.width = stage.width
-                    // laid out for a square watch: sizes follow the width
-                    Game.Dims.height = stage.width
-                    gameLoader.active = true
-                }
-            }
-        }
-    }
+    initialPage: Component { StrobePage { } }
 
     cover: Component {
         CoverBackground {
-            Rectangle {
-                anchors.fill: parent
-                color: "black"
-            }
-
-            // the play field is moved in here while the app is in the background
-            Item {
-                id: holder
-                anchors.fill: parent
-                clip: true
-                Component.onCompleted: app.coverHolder = holder
-                Component.onDestruction: app.coverHolder = null
+            HighlightImage {
+                anchors.centerIn: parent
+                anchors.verticalCenterOffset: -Theme.paddingLarge
+                width: Theme.iconSizeLarge
+                height: width
+                sourceSize { width: width; height: height }
+                source: "images/ios-flash-outline.svg"
+                color: Theme.primaryColor
             }
 
             Label {
-                anchors.centerIn: parent
-                text: "Pulsar"
-                visible: !app.stageItem || app.stageItem.parent !== holder
+                anchors {
+                    bottom: parent.bottom
+                    bottomMargin: Theme.paddingLarge
+                    horizontalCenter: parent.horizontalCenter
+                }
+                text: app.hz + " Hz"
+                color: Theme.highlightColor
+                font.pixelSize: Theme.fontSizeLarge
             }
         }
     }

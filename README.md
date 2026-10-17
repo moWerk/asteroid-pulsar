@@ -18,17 +18,15 @@ Drag adjustable Hz on the strobe action screen
 Reviewing the code? Start with [review-and-architecture-hints.md](review-and-architecture-hints.md).
 
 The `sailfishos` branch is the SailfishOS version, built for Sailfish OS
-5.1 on aarch64 and run on a Jolla C2. The strobe is the watch app; the
-controls keep the watch proportions across the phone's width, and the
-strobe fills the whole screen when it runs.
+5.1 on aarch64 and run on a Jolla C2. Since 1.2.0 the controls are
+SailfishOS's own (see below); the strobe fills the whole screen when it runs.
 
 - The brightness is raised to maximum while the app runs and set back
   when it closes normally, as on the watch. If the app is killed, the
   brightness stays at maximum.
-- Install: `devel-su pkcon install-local harbour-asteroid-pulsar-1.1.0-1.noarch.rpm`
+- Install: `devel-su pkcon install-local harbour-asteroid-pulsar-1.2.0-1.noarch.rpm`
 - Build: `mb2 -t SailfishOS-5.1.0.11-aarch64 build` with the Sailfish
-  Platform SDK. SailfishOS is on Qt 5.6; the port uses small stand-ins
-  for the AsteroidOS controls and SailfishOS's own display settings.
+  Platform SDK.
 - Photosensitivity: a strobe at up to 25 Hz on a phone screen is a lot
   brighter than on a watch.
 
@@ -56,4 +54,22 @@ the Jolla Tablet (4.6) and a Jolla 1 (3.4).
 ```
 Disclosure: LLMGD-3 · origin O1 (idea from a forum reply and the author's go; LLM-converted; start-checked by log on three devices; self-graded)
 LLMGD: v0.2; assurance=A3; flags=T; origin={O0:.7,O1:.3}; origin_headline=O0; scope=packaging+code; graded-by=claude-opus-5-5; retrieval=author-side
+```
+
+### Silica controls (1.2.0)
+
+Forum user nthn pointed out that Silica is more than a transparent theme. Up
+to 1.1.0 the app ran the watch interface inside a SailfishOS page, with its
+own dark background over the ambience. 1.2.0 is a SailfishOS page: the
+ambience shows through, the header, the rate slider, fonts and colours are
+Silica's and follow the theme, and the watch controls are gone. The cover
+shows the flash glyph and the current rate. The strobe stops when the app
+leaves the screen.
+
+Checked: the author used the strobe on a Jolla C2 (5.1) and set the spacing.
+Not checked on the Jolla Tablet (4.6) or the Jolla 1 (3.4).
+
+```
+Disclosure: LLMGD-3 · origin O0 (prompted by a forum post and the author's direction; LLM-rewritten; spacing set and strobe tested by the author on a Jolla C2; self-graded)
+LLMGD: v0.3; assurance=A3; flags=U,T; origin={O0:.6,O1:.4}; origin_headline=O0; scope=code+packaging+docs; graded-by=claude-opus-5-5; retrieval=author-side
 ```

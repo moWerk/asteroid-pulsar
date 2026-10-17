@@ -3,7 +3,7 @@
 
 Name:       harbour-asteroid-pulsar
 Summary:    Pulsar, a stroboscope
-Version:    1.1.0
+Version:    1.2.0
 Release:    1
 License:    GPLv3+
 URL:        https://github.com/moWerk/asteroid-pulsar
@@ -11,7 +11,6 @@ Source0:    %{name}-%{version}.tar.bz2
 BuildArch:  noarch
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   libsailfishapp-launcher
-Requires:   qt5-qtgraphicaleffects
 Requires:   libkeepalive
 Requires:   nemo-qml-plugin-systemsettings
 BuildRequires:  pkgconfig(Qt5Core)

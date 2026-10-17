@@ -10,24 +10,25 @@ The app is the AsteroidOS watch app on `main`. This branch forks from it at `a7b
 
 Many port edits carry a `SailfishOS:` comment, but not all of them. Each commit message says what changed, why, and what was not checked, and ends with an LLMGD line grading it.
 
+Up to 1.1.0 the watch QML ran inside a Silica page through small stand-ins for the AsteroidOS controls; 1.2.0 replaced them with Silica's own components.
+
 The port was written by an LLM (Claude), directed and tested by the author, who has not read the code. Everything here is a prototype until a reviewer owns it. That is the point of this file.
 
 ## Architecture
 
-- `qml/harbour-asteroid-pulsar.qml`: the Silica `ApplicationWindow`. It sizes `Dims` from the screen width, then loads the app (`game/main.qml`). When the app goes to the background, the same item is moved into the cover and scaled down, so the home screen tile shows it live. The same shell is used in all eight ports.
-- `qml/game/Dims.qml`, `Label.qml`, `HighlightBar.qml`, `Icon.qml`, `PageHeader.qml`, `ValueCycler.qml`, `IntSelector.qml`, `DeviceSpecs.qml` (whichever exist here): small stand-ins for AsteroidOS's `org.asteroid.controls` and `org.asteroid.utils`, so the watch QML runs unchanged where possible. Each is a few dozen lines.
-- `qml/game/main.qml`: the app frame. It raises the display brightness to maximum through `org.nemomobile.systemsettings` and restores it in `Component.onDestruction`.
-- `qml/game/StrobePage.qml` (about 200 lines): the strobe timing, the drag-to-adjust frequency (1 to 25 Hz) and the RPM readout.
+- `qml/harbour-asteroid-pulsar.qml`: the Silica `ApplicationWindow`. It holds the rate and the on/off state, stops the strobe when the app leaves the screen, and draws the cover (flash glyph and rate).
+- `qml/pages/StrobePage.qml` (about 200 lines): a Silica `Page`. Header, RPM readout, start button, rate `Slider` (1 to 25 Hz); the full-screen strobe with tap to stop and drag to adjust. It also raises the display brightness to maximum through `org.nemomobile.systemsettings` and restores it in `Component.onDestruction`.
+- `qml/images/`: the flash glyph (ionicons, MIT), tinted by `HighlightImage`.
 - Packaging: pure QML, no binary. `Exec=sailfish-qml harbour-asteroid-pulsar` (package `libsailfishapp-launcher`), the `.pro` is `TEMPLATE = aux` with plain `INSTALLS`, and the spec is `BuildArch: noarch` with an xz payload (rpm 4.14 on SailfishOS 3.4 can not unpack the zstd of newer SDKs).
 
 ## Read these first
 
 1. `StrobePage.qml`: how the flash timing is driven. A QML `Timer` and the frame rate limit how precise the strobe can be. Check whether the RPM readout claims more precision than the display can deliver.
-2. The brightness handling in `main.qml`.
+2. The brightness handling at the top of `StrobePage.qml`.
 
 ## Skim
 
-Stand-ins, icons, translations, packaging.
+Icons, translations, packaging.
 
 ## Worth questioning
 
