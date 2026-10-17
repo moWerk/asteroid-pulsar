@@ -66,6 +66,8 @@ Silica's and follow the theme, and the watch controls are gone. The cover
 shows the flash glyph and the current rate. The strobe stops when the app
 leaves the screen.
 
+<img src="screenshots/pulsar-start.png" width="270" alt="Pulsar start page on SailfishOS"> <img src="screenshots/pulsar-strobe.png" width="270" alt="Pulsar strobing, rate changed by drag">
+
 Checked: the author used the strobe on a Jolla C2 (5.1) and set the spacing.
 Not checked on the Jolla Tablet (4.6) or the Jolla 1 (3.4).
 
